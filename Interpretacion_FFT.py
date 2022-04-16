@@ -57,13 +57,18 @@ d = lambda z: np.piecewise(z,abs(z%1)<=0.001,[1,0])#
 Del = d(c)                              #
 #########################################
 
+#__FCajon__##############################
+FC = np.sin(np.pi*N*c)/np.sin(np.pi*c)/N#
+#########################################
+
 #__Ploteo__##############################
 #Funcion a plotear
-Fun = Seno
+Fun = Unos
 fig, ax = plt.subplots(2)               #
-ax[0].plot(t, Fun, '.-')                #
+ax[0].plot(t, Fun, 'bo')                #
 ax[1].plot(f, F(Fun), 'ro')             #
-ax[1].plot(c, Del, '-')
+ax[1].plot(c, Del, '-')                 #
+ax[1].plot(c, FC, 'g-')                 #
 ax[0].set_xlabel('Tiempo')              #
 ax[0].set_ylabel('Amplitud')            #
 ax[1].set_xlabel('Frecuencia')          #
