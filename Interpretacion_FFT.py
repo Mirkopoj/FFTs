@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 #Nº de muestras de tiempo
 N = 9      
 #Nº de muestras de frecuencia
-M = 11
+M = 9
 #########################################
 
 #__Ejes__################################
-fstep = 1/N                             #
+fstep = 1/M                             #
                                         #
 def flim(S):                            #
     return int(S/2)*fstep               #
@@ -39,16 +39,15 @@ Seno = a0 * np.sin(2*np.pi*f0*t)        #
 #########################################
 
 #__Unos__################################
-                                        #
 Unos = [1]*N                            #
 #########################################
 
 #__fft__#################################
 def F(fun_t):                           #
-    fftR = 2*abs(np.fft.fft(fun_t,n=M)) #
+    fftR = abs(np.fft.fft(fun_t,n=M))/M #
     fft0 = fftR[int((N+1)/2):]          #
     fft1 = fftR[:int((N+1)/2)]          #
-    return np.concatenate((fft0,fft1))/M#
+    return np.concatenate((fft0,fft1))  #
 #########################################
 
 #__Ploteo__##############################
@@ -57,15 +56,14 @@ Fun = Unos
 fig, ax = plt.subplots(2)               #
 ax[0].plot(t, Fun, '.-')                #
 ax[1].plot(f, F(Fun), '.-')             #
-ax[0].set_xlabel('Tiempo')
-ax[0].set_ylabel('Amplitud')
-ax[1].set_xlabel('Frecuencia')
-ax[1].set_ylabel('Amplitud')
-axLabels = np.linspace(-0.5, 0.5, N)
-ax[1].xaxis.set_ticks(axLabels)
-ax[1].tick_params(labelrotation=45,axis='x')
-ax[1].grid()
-plt.xlim(-0.5,0.5)
-plt.tight_layout()
+ax[0].set_xlabel('Tiempo')              #
+ax[0].set_ylabel('Amplitud')            #
+ax[1].set_xlabel('Frecuencia')          #
+ax[1].set_ylabel('Amplitud')            #
+axLabels = np.linspace(-0.5, 0.5, N)    #
+ax[1].xaxis.set_ticks(axLabels)         #
+ax[1].grid()                            #
+plt.xlim(-0.5,0.5)                      #
+plt.tight_layout()                      #
 plt.show()                              #
 #########################################
