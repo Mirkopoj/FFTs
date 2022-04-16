@@ -10,7 +10,7 @@ M = 9
 
 #__Ejes__################################
 fstep = 1/M                             #
-R = 2*M                                 #
+R = 2*M #rango                          #
                                         #
 def flim(S):                            #
     return int(S/2)*fstep               #
