@@ -63,7 +63,7 @@ Fun = Seno
 fig, ax = plt.subplots(2)               #
 ax[0].plot(t, Fun, '.-')                #
 ax[1].plot(f, F(Fun), 'ro')             #
-ax[1].plot(c, Del, '.-')
+ax[1].plot(c, Del, '-')
 ax[0].set_xlabel('Tiempo')              #
 ax[0].set_ylabel('Amplitud')            #
 ax[1].set_xlabel('Frecuencia')          #
