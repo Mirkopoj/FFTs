@@ -2,8 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #__Parametros__##########################
-#Nº de muestras 
-N = 8      
+#Nº de muestras de tiempo
+N = 9      
+#Nº de muestras de frecuencia
+M = 11
 #########################################
 
 #__Ejes__################################
@@ -15,7 +17,7 @@ def tlim(S):                            #
     return int(S/2)                     #
                                         #
 t = np.linspace(-tlim(N), tlim(N-1), N) #
-f = np.linspace(-flim(N), flim(N-1), N) #
+f = np.linspace(-flim(M), flim(M-1), M) #
 #########################################
 
 #__Cajon__###############################
@@ -36,19 +38,17 @@ a0 = 1                                  #
 Seno = a0 * np.sin(2*np.pi*f0*t)        #
 #########################################
 
-#__Unos__###############################
-#Ancho de los unos
-ancho = 5
+#__Unos__################################
                                         #
-Unos = [1]*ancho                        #
+Unos = [1]*N                            #
 #########################################
 
 #__fft__#################################
 def F(fun_t):                           #
-    fftR = 2*abs(np.fft.fft(fun_t))/N   #
+    fftR = 2*abs(np.fft.fft(fun_t,n=M)) #
     fft0 = fftR[int((N+1)/2):]          #
     fft1 = fftR[:int((N+1)/2)]          #
-    return np.concatenate((fft0,fft1))  #
+    return np.concatenate((fft0,fft1))/M#
 #########################################
 
 #__Ploteo__##############################
