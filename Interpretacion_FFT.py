@@ -19,7 +19,7 @@ def tlim(S):                            #
                                         #
 t = np.linspace(-tlim(N), tlim(N-1), N) #
 f = np.linspace(-flim(R), flim(R-1), R) #
-c = np.linspace(-flim(R), flim(R-1),R*3)
+c = np.linspace(-flim(R), flim(R-1), 50*R)
 #########################################
 
 #__Cajon__###############################
@@ -53,7 +53,7 @@ def F(fun_t):                           #
 #########################################
 
 #__Tren_de_deltas__######################
-d = lambda z: np.piecewise(z,z==0,[1,0])#
+d = lambda z: np.piecewise(z,abs(z%0.2)<=0.001,[1,0])#
 Del = d(c)                              #
 #########################################
 
@@ -63,7 +63,7 @@ Fun = Seno
 fig, ax = plt.subplots(2)               #
 ax[0].plot(t, Fun, '.-')                #
 ax[1].plot(f, F(Fun), 'ro')             #
-ax[1].plot(c, Del, '-')
+ax[1].plot(c, Del, '.-')
 ax[0].set_xlabel('Tiempo')              #
 ax[0].set_ylabel('Amplitud')            #
 ax[1].set_xlabel('Frecuencia')          #
