@@ -19,7 +19,7 @@ def tlim(S):                            #
                                         #
 t = np.linspace(-tlim(N), tlim(N-1), N) #
 f = np.linspace(-flim(R), flim(R-1), R) #
-c = np.linspace(-flim(R), flim(R-1), 50*R)
+c = np.linspace(-1, 1, 100*R)
 #########################################
 
 #__Cajon__###############################
@@ -53,7 +53,7 @@ def F(fun_t):                           #
 #########################################
 
 #__Tren_de_deltas__######################
-d = lambda z: np.piecewise(z,abs(z%0.2)<=0.001,[1,0])#
+d = lambda z: np.piecewise(z,abs(z%1)<=0.001,[1,0])#
 Del = d(c)                              #
 #########################################
 
