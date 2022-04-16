@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 
 #__Parametros__##########################
 #Nº de muestras de tiempo
-N = 50      
+N = 9      
 #Nº de muestras de frecuencia
-M = 64 
+M = N 
 #########################################
 
 #__Ejes__################################
@@ -54,14 +54,16 @@ Unos = [1]*N                            #
 #__fft__#################################
 def F(fun_t):                           #
     fftR = abs(np.fft.fft(fun_t,n=M))/M #
-    fft0 = fftR#[int((M+1)/2):]         #
-    fft1 = fftR#[:int((M+1)/2)]         #
-    return np.concatenate((fft1,fft0))  #
+    return np.concatenate((fftR,fftR))  #
 #########################################
 
 #__Tren_de_deltas__######################
-d = lambda z: np.piecewise(z,abs(z%1)<=0.001,[1,0])#
+d = lambda z: np.piecewise(z,
+                        abs(z%1)<=0.001,
+                        [1,0])          #
+                                        #
 Del = d(c)                              #
+DelCos = d(c+f1)+d(c-f1)                #
 #########################################
 
 #__FCajon__##############################
@@ -74,7 +76,7 @@ Fun = Coseno
 fig, ax = plt.subplots(2)               #
 ax[0].plot(t, Fun, 'bo')                #
 ax[1].plot(f, F(Fun), 'ro')             #
-ax[1].plot(c, Del, '-')                 #
+ax[1].plot(c, DelCos, '-')              #
 ax[1].plot(c, FC, 'g-')                 #
 ax[0].set_xlabel('Tiempo')              #
 ax[0].set_ylabel('Amplitud')            #
@@ -82,7 +84,9 @@ ax[1].set_xlabel('Frecuencia')          #
 ax[1].set_ylabel('Amplitud')            #
 axLabels = np.linspace(-1, 1, 2*M+1)    #
 ax[1].xaxis.set_ticks(axLabels)         #
+ax[0].grid()                            #
 ax[1].grid()                            #
+plt.xticks(rotation=45)
 plt.xlim(-1,1)                          #
 plt.tight_layout()                      #
 plt.show()                              #
