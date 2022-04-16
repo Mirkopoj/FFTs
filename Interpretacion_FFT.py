@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 
 #__Parametros__##########################
 #Nº de muestras de tiempo
-N = 9      
+N = 50      
 #Nº de muestras de frecuencia
-M = 9
+M = 64 
 #########################################
 
 #__Ejes__################################
@@ -34,10 +34,17 @@ Cajon = u0*u1/ancho                     #
 #########################################
 
 #__Seno__################################
-f0 = 15/8                               
+f0 = 5/31                               
 a0 = 1                                  
                                         #
 Seno = a0 * np.sin(2*np.pi*f0*t)        #
+#########################################
+
+#__Seno__################################
+f1 = 5/31                               
+a1 = 1                                  
+                                        #
+Coseno = a1 * np.cos(2*np.pi*f1*t)      #
 #########################################
 
 #__Unos__################################
@@ -63,7 +70,7 @@ FC = np.sin(np.pi*N*c)/np.sin(np.pi*c)/N#
 
 #__Ploteo__##############################
 #Funcion a plotear
-Fun = Unos
+Fun = Coseno
 fig, ax = plt.subplots(2)               #
 ax[0].plot(t, Fun, 'bo')                #
 ax[1].plot(f, F(Fun), 'ro')             #
