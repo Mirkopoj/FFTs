@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 #__Parametros__##########################
 #Nº de muestras de tiempo
-N = 32      
+N = 9      
 #Nº de muestras de frecuencia
 M = N 
 #########################################
@@ -62,22 +62,22 @@ d = lambda z: np.piecewise(z,
                         abs(z%1)<=0.001,
                         [1,0])          #
                                         #
-Del = d(c)                              #
+Del = (N-1)*d(c)                              #
 DelCos = d(c+f1)+d(c-f1)                #
 #########################################
 
-#__FCajon__##############################
+#__TFCajon__#############################
 FC = np.sin(np.pi*N*c)/np.sin(np.pi*c)  #
 #########################################
 
 #__Ploteo__##############################
 #Funcion a plotear
-Fun = Coseno
+Fun = Unos
 fig, ax = plt.subplots(2)               #
-ax[0].plot(t, Fun, 'b-')                #
-ax[1].plot(f, F(Fun), 'r.-')             #
-#ax[1].plot(c, DelCos, 'b-')                #
-#ax[1].plot(c, FC, 'g-')                 #
+ax[0].plot(t, Fun, 'bo')                #
+ax[1].plot(f, F(Fun), 'ro')             #
+ax[1].plot(c, Del, 'b-')                #
+ax[1].plot(c, FC, 'g-')                 #
 ax[0].set_xlabel('Tiempo')              #
 ax[0].set_ylabel('Amplitud')            #
 ax[1].set_xlabel('Frecuencia')          #
