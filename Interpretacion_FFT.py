@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 #__Parametros__##########################
 #Nº de muestras de tiempo
-N = 1024    
+N = 32    
 #Nº de muestras de frecuencia
 M = N 
 #########################################
@@ -53,7 +53,7 @@ Unos = [1]*N                            #
 
 #__fft__#################################
 def F(fun_t):                           #
-    fftR = abs(np.fft.fft(fun_t,n=M))/M #
+    fftR = abs(np.fft.fft(fun_t,n=M))   #
     return np.concatenate((fftR,fftR))  #
 #########################################
 
@@ -67,7 +67,7 @@ DelCos = d(c+f1)+d(c-f1)                #
 #########################################
 
 #__FCajon__##############################
-FC = np.sin(np.pi*N*c)/np.sin(np.pi*c)/N#
+FC = np.sin(np.pi*N*c)/np.sin(np.pi*c)  #
 #########################################
 
 #__Ploteo__##############################
