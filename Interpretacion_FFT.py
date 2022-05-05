@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 
 #__Parametros__##########################
 #Nº de muestras de tiempo
-N = 9      
+N = 5      
 #Nº de muestras de frecuencia
-M = N 
+M = 7
 #########################################
 
 #__Ejes__################################
@@ -82,7 +82,7 @@ ax[0].set_xlabel('Tiempo')              #
 ax[0].set_ylabel('Amplitud')            #
 ax[1].set_xlabel('Frecuencia')          #
 ax[1].set_ylabel('Amplitud')            #
-axLabels = np.linspace(-1, 1, 2*64+1)    #
+axLabels = np.linspace(-1, 1, 2*M+1)    #
 ax[1].xaxis.set_ticks(axLabels)         #
 ax[0].grid()                            #
 #ax[1].grid()                            #
