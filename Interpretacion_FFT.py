@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 
 #__Parametros__##########################
 #Nº de muestras de tiempo
-N = 9      
+N = 31      
 #Nº de muestras de frecuencia
-M = 7
+M = N
 #########################################
 
 #__Ejes__################################
@@ -66,8 +66,19 @@ Del = (N-1)*d(c)                        #
 DelCos = d(c+f1)+d(c-f1)                #
 #########################################
 
+#__SINC__################################
+SINC = lambda w: np.sin(np.pi*N*w)/np.sin(np.pi*w)  
+#########################################
+
 #__TFCajon__#############################
-FC = np.sin(np.pi*N*c)/np.sin(np.pi*c)  #
+FC = SINC(c)
+#########################################
+
+#__TFCos*Cajon__#########################
+COSSINCS = 0
+for i in range(2):
+    COSSINCS += SINC(c-((5/31)+i*(21/31))) 
+    COSSINCS += SINC(c+((5/31)+i*(21/31)))
 #########################################
 
 #__Ploteo__##############################
@@ -77,7 +88,7 @@ fig, ax = plt.subplots(2)               #
 ax[0].plot(t, Fun, 'bo')                #
 ax[1].plot(f, F(Fun), 'ro')             #
 ax[1].plot(c, Del, 'b-')                #
-ax[1].plot(c, FC, 'g-')                 #
+ax[1].plot(c, COSSINCS, 'g-')            #
 ax[0].set_xlabel(
     'Muestras (en el tiempo)')          #
 ax[0].set_ylabel('Amplitud')            #
