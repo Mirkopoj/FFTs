@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 #__Parametros__##########################
 #Nº de muestras de tiempo
-N = 5      
+N = 9      
 #Nº de muestras de frecuencia
 M = 7
 #########################################
@@ -62,7 +62,7 @@ d = lambda z: np.piecewise(z,
                         abs(z%1)<=0.001,
                         [1,0])          #
                                         #
-Del = (N-1)*d(c)                              #
+Del = (N-1)*d(c)                        #
 DelCos = d(c+f1)+d(c-f1)                #
 #########################################
 
@@ -78,14 +78,15 @@ ax[0].plot(t, Fun, 'bo')                #
 ax[1].plot(f, F(Fun), 'ro')             #
 ax[1].plot(c, Del, 'b-')                #
 ax[1].plot(c, FC, 'g-')                 #
-ax[0].set_xlabel('Tiempo')              #
+ax[0].set_xlabel(
+    'Muestras (en el tiempo)')          #
 ax[0].set_ylabel('Amplitud')            #
 ax[1].set_xlabel('Frecuencia')          #
 ax[1].set_ylabel('Amplitud')            #
 axLabels = np.linspace(-1, 1, 2*M+1)    #
 ax[1].xaxis.set_ticks(axLabels)         #
 ax[0].grid()                            #
-#ax[1].grid()                            #
+#ax[1].grid()                           #
 plt.xticks(rotation=90)                 #
 plt.xlim(-1,1)                          #
 plt.tight_layout()                      #
