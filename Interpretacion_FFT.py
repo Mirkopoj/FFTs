@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 
 #__Parametros__##########################
 #Nº de muestras de tiempo
-N = 31      
+N = 7
 #Nº de muestras de frecuencia
-M = N
+M = 9
 #########################################
 
 #__Ejes__################################
@@ -78,7 +78,7 @@ FC = SINC(c)
 COSSINCS = 0
 for i in range(2):
     COSSINCS += SINC(c-((5/31)+i*(21/31))) 
-    COSSINCS += SINC(c+((5/31)+i*(21/31)))
+COSSINCS /= 2
 #########################################
 
 #__Ploteo__##############################
@@ -88,16 +88,17 @@ fig, ax = plt.subplots(2)               #
 ax[0].plot(t, Fun, 'bo')                #
 ax[1].plot(f, F(Fun), 'ro')             #
 ax[1].plot(c, Del, 'b-')                #
-ax[1].plot(c, COSSINCS, 'g-')            #
+ax[1].plot(c, abs(FC), 'g-')            #
 ax[0].set_xlabel(
     'Muestras (en el tiempo)')          #
 ax[0].set_ylabel('Amplitud')            #
 ax[1].set_xlabel('Frecuencia')          #
 ax[1].set_ylabel('Amplitud')            #
+#axLabels = np.linspace(-1, 1, 64+1)    #
 axLabels = np.linspace(-1, 1, 2*M+1)    #
 ax[1].xaxis.set_ticks(axLabels)         #
 ax[0].grid()                            #
-#ax[1].grid()                           #
+ax[1].grid()                           #
 plt.xticks(rotation=90)                 #
 plt.xlim(-1,1)                          #
 plt.tight_layout()                      #
